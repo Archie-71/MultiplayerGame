@@ -1,0 +1,131 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Scripts/Server_browser.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/Server_listener.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Themes/ui.tres" type="Theme" id=4]
+
+[sub_resource type="Animation" id=1]
+resource_name = "Searching"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:text")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.2, 0.4, 0.6 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
+"update": 1,
+"values": [ "正在搜索服务器", "正在搜索服务器.", "正在搜索服务器..", "正在搜索服务器..." ]
+}
+
+[node name="Server_browser" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+theme = ExtResource( 4 )
+script = ExtResource( 2 )
+
+[node name="Background_panel" type="Panel" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -864.0
+margin_top = -484.5
+margin_right = 864.0
+margin_bottom = 484.5
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Manual_setup" type="Button" parent="Background_panel"]
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_left = -473.0
+margin_top = -175.0
+margin_right = -30.0001
+margin_bottom = -30.0001
+text = "手动设置"
+
+[node name="Go_back" type="Button" parent="Background_panel"]
+anchor_top = 1.0
+anchor_bottom = 1.0
+margin_left = 30.0
+margin_top = -170.0
+margin_right = 473.0
+margin_bottom = -25.0001
+text = "返回"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Server_ip_text_edit" type="LineEdit" parent="Background_panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -403.0
+margin_top = -243.0
+margin_right = 403.0
+margin_bottom = -138.0
+align = 1
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Type_in_server_ip" type="Label" parent="Background_panel/Server_ip_text_edit"]
+anchor_right = 1.0
+margin_top = -105.0
+margin_right = -6.10352e-05
+text = "请输入服务器IP"
+align = 1
+valign = 1
+
+[node name="Join_server" type="Button" parent="Background_panel/Server_ip_text_edit"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -221.5
+margin_top = 94.5
+margin_right = 221.5
+margin_bottom = 239.5
+text = "加入房间"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Background_panel"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -794.0
+margin_top = -453.0
+margin_right = 794.0
+margin_bottom = 301.0
+
+[node name="Searching_for_servers" type="Label" parent="Background_panel/VBoxContainer"]
+margin_right = 1588.0
+margin_bottom = 142.0
+rect_min_size = Vector2( 0, 70 )
+text = "正在搜索服务器"
+align = 1
+valign = 1
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Background_panel/VBoxContainer/Searching_for_servers"]
+autoplay = "Searching"
+playback_speed = 0.5
+anims/Searching = SubResource( 1 )
+
+[node name="Server_listener" parent="." instance=ExtResource( 3 )]
+
+[connection signal="pressed" from="Background_panel/Manual_setup" to="." method="_on_Manual_setup_pressed"]
+[connection signal="pressed" from="Background_panel/Go_back" to="." method="_on_Go_back_pressed"]
+[connection signal="pressed" from="Background_panel/Server_ip_text_edit/Join_server" to="." method="_on_Join_server_pressed"]
+[connection signal="new_server" from="Server_listener" to="." method="_on_Server_listener_new_server"]
+[connection signal="remove_server" from="Server_listener" to="." method="_on_Server_listener_remove_server"]
