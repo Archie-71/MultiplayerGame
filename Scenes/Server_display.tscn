@@ -21,6 +21,6 @@ anchor_bottom = 1.0
 margin_left = -302.0
 margin_top = 13.0
 margin_bottom = -13.0
-text = "Join"
+text = "加入"
 
 [connection signal="pressed" from="Join_button" to="." method="_on_Join_button_pressed"]

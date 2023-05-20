@@ -76,6 +76,13 @@ polygon = PoolVector2Array( 1721, 59, 1721, 281, 1826, 278, 1819, 56 )
 
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
+smoothing_enabled = true
+drag_margin_left = 0.4
+drag_margin_top = 0.4
+drag_margin_right = 0.4
+drag_margin_bottom = 0.4
+editor_draw_limits = true
+editor_draw_drag_margin = true
 script = ExtResource( 4 )
 
 [node name="Spawn_locations" type="Node" parent="."]

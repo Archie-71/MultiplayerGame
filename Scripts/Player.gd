@@ -59,7 +59,7 @@ func _process(delta: float) -> void:
 		player_hp_instance.health = hp
 	
 	if get_tree().has_network_peer():
-		if is_network_master() and visible:
+		if is_network_master() and hp > 0:
 			var x_input = int(Input.is_action_pressed("right")) - int(Input.is_action_pressed("left"))
 			var y_input = int(Input.is_action_pressed("down")) - int(Input.is_action_pressed("up"))
 			
