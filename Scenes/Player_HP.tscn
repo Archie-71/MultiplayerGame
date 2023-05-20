@@ -3,7 +3,7 @@
 [ext_resource path="res://Assets/Images/ui.png" type="Texture" id=1]
 [ext_resource path="res://Scripts/Player_HP.gd" type="Script" id=2]
 
-[node name="Player_HP" type="Node2D"]
+[node name="Player_HP" type="Node2D" groups=["Net"]]
 scale = Vector2( 2, 2 )
 script = ExtResource( 2 )
 

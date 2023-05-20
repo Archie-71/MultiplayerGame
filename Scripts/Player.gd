@@ -259,7 +259,6 @@ sync func destroy() -> void:
 	player_hp_instance.visible = false
 	Global.alive_players.erase(self)
 	
-	
 	if get_tree().has_network_peer():
 		if is_network_master():
 			Global.player_master = null
@@ -271,8 +270,8 @@ func _exit_tree() -> void:
 			Global.player_master = null
 
 func _on_Network_tick_timeout():
-	if is_network_master():
-		if get_tree().has_network_peer():
+	if get_tree().has_network_peer():
+		if is_network_master():
 			rset_unreliable("puppet_position", global_position)
 			rset_unreliable("puppet_velocity", velocity)
 			rset_unreliable("puppet_rotation", rotation)
