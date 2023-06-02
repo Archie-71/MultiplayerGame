@@ -236,6 +236,7 @@ sync func enable() -> void:
 	update_shoot_mode(Global.WEAPONS.UNARMED)
 	username_text_instance.visible = true
 	player_hp_instance.visible = true
+	feet.visible = true
 	visible = true
 	$CollisionShape2D2.disabled = false
 	$Hitbox/CollisionShape2D.disabled = false
